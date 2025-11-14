@@ -3,7 +3,8 @@ gnb 백드랍 필터 -> gnb.css
 backdrop-filter: blur(8px); /* 배경 블러 효과 */ 이거 수정 
 
 
-캔버스 CODE 폰트 사이즈
+캔버스 CODE 폰트 사이즈 <SKETCH.JS>
+
 
     // --- 폰트 크기 설정 ---
     this.baseSize = 12;       // 1. 기본 폰트 크기
@@ -32,7 +33,7 @@ backdrop-filter: blur(8px); /* 배경 블러 효과 */ 이거 수정
     rippleWidth: 10 // 파동의 두께
 
 
-    어바웃 텍스트 수정
+    어바웃 텍스트 수정 MAIN.HTML
             .about  <-
         .decoding 
         .about-subtitle <-세상을 읽고
