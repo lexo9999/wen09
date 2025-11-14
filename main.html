@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js Particle System</title>
+    <!-- Google Fonts: Noto Sans KR, Source Code Pro -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+    <!-- GNB 스타일시트 연결 -->
+    <link rel="stylesheet" href="gnb.css">
+    <style>
+        /* 기본 스타일 초기화 */
+        body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        /* height: 100%; */ /* 스크롤을 위해 제거 */
+        background-color: #000000; /* 배경색을 검정색으로 변경 */
+        color: #A8D5E2;
+        font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
+        }
+
+        #canvas-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+        #canvas-container canvas {
+            display: block;
+        }
+
+        #main-content {
+            position: relative;
+            z-index: 1;
+        }
+        /* 제공된 CSS */
+        .frame-52,
+        .frame-52 * {
+            box-sizing: border-box;
+        }
+        .frame-52 {
+            height: 2400px; /* 모든 콘텐츠를 포함할 수 있도록 높이를 충분히 늘림 */
+            position: relative; /* 자식 요소의 absolute 포지셔닝 기준 */
+            overflow: hidden; /* 내부 요소가 넘칠 경우 숨김 */
+            /* 디자인 시안의 기준 너비로 추정 */
+            max-width: 1920px; 
+            margin: 0 auto;
+        }
+        .about {
+            color: #ffffff;
+            text-align: left;
+            font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
+            font-size: 92.44px;
+            font-weight: 400;
+            position: absolute;
+            left: 190px;
+            top: 53px;
+        }
+        .decoding {
+            color: #ffffff;
+            text-align: left;
+            font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            position: absolute;
+            left: 1063px;
+            top: 320.99px;
+        }
+        .about-subtitle {
+            color: #ffffff;
+            text-align: left;
+            font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
+            font-size: 44.81px;
+            font-weight: 400;
+            position: absolute;
+            left: 1063px;
+            top: 365px;
+        }
+        .encoding {
+            color: #ffffff;
+            text-align: left;
+            font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            position: absolute;
+            left: 1516px;
+            top: 410px;
+        }
+        .about-subtitle-2 {
+            color: #ffffff;
+            text-align: left;
+            font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
+            font-size: 44.81px;
+            font-weight: 400;
+            position: absolute;
+            left: 1322px;
+            top: 459px;
+        }
+        .about-description {
+            color: #ffffff;
+            text-align: left;
+            font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
+            font-size: 22.18px;
+            line-height: 160%;
+            font-weight: 400;
+            position: absolute;
+            left: 1023px;
+            top: 568.24px;
+            width: 598px;
+        }
+        .rectangle-98 {
+            /* background 속성은 img 태그에 불필요하므로 제거합니다. */
+            width: 4px; /* 애니메이션 시작을 위해 너비를 작게 설정 */
+            height: 4px; /* 애니메이션 시작을 위해 높이를 작게 설정 */
+            position: absolute;
+            left: 364px;
+            top: 263px;
+            object-fit: cover; /* 이미지가 비율을 유지하며 영역을 꽉 채우도록 설정 */
+            transform-origin: top left; /* 애니메이션 기준점을 왼쪽 상단으로 설정 */
+        }
+        .info {
+            color: #bcd7de;
+            text-align: left;
+            font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
+            font-size: 92.44px;
+            font-weight: 400;
+            position: absolute;
+            left: 190px;
+            top: 1264px;
+        }
+        .info-category {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            position: absolute;
+        }
+        .info-category.committee { width: 139px; left: 769px; top: 1483px; }
+        .info-category.web-team { width: 139px; left: 769px; top: 1887px; }
+        .info-category.small-banner-team { left: 1052px; top: 1887px; }
+        .info-category.large-banner-team { width: 139px; left: 1335px; top: 1887px; }
+        .info-category.video-team { left: 1618px; top: 1887px; }
+
+        .info-title {
+            color: #8dd7eb;
+            text-align: left;
+            font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
+            font-size: 25.17px;
+            font-weight: 500;
+            position: relative;
+        }
+        .member-list {
+            display: flex;
+            flex-direction: column;
+            gap: 11.69px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .member-name {
+            color: rgba(188, 215, 222, 0.6);
+            text-align: left;
+            font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
+            font-size: 25.17px;
+            line-height: 160%;
+            font-weight: 400;
+            position: relative;
+        }
+        .member-name.variant-1 { color: #cde1e6; }
+        .member-name.variant-2 { color: #bcd7de; }
+
+        .info-subtitle { color: #bcd7de; font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif; font-weight: 500; font-size: 25.17px; position: relative; }
+        .member-list.short { width: 70.12px; }
+
+        /* --- 반응형 레이아웃 (모바일 & 태블릿) --- */
+        /* 화면 너비가 1279px 이하일 때 적용됩니다. */
+        @media (max-width: 1279px) {
+            .frame-52 {
+                height: auto; /* 콘텐츠 높이에 맞춰 자동 조절 */
+                padding: 0 24px; /* 좌우 여백 추가 */
+            }
+
+            /* 모든 절대 위치 요소를 상대 위치로 변경하여 세로로 쌓이게 합니다. */
+            .about, .decoding, .about-subtitle, .encoding, .about-subtitle-2, .about-description, .info, .info-category {
+                position: relative;
+                left: auto;
+                top: auto;
+                width: auto;
+                margin-bottom: 20px; /* 요소 간 간격 추가 */
+            }
+
+            /* 폰트 크기 조정 */
+            .about, .info {
+                font-size: 15vw; /* 화면 너비에 비례하는 폰트 크기 */
+                margin-top: 80px;
+            }
+            .about-subtitle, .about-subtitle-2 {
+                font-size: 8vw;
+                margin-top: 40px;
+            }
+            .decoding, .encoding {
+                font-size: 5vw;
+            }
+            .about-description {
+                font-size: 4vw;
+                line-height: 1.6;
+                margin-top: 40px;
+            }
+
+            /* 포스터 이미지 위치 및 크기 조정 */
+            .rectangle-98 {
+                left: 50%; /* 중앙 정렬을 위해 왼쪽에서 50% 이동 */
+                transform: translateX(-50%); /* 자신의 너비의 50%만큼 왼쪽으로 이동하여 완벽 중앙 정렬 */
+                top: 120px; /* 상단 여백 조정 */
+                margin-top: 60px;
+                margin-bottom: 60px;
+            }
+
+            /* Info 섹션 조정 */
+            .info-category {
+                margin-bottom: 60px; /* 팀별 간격 추가 */
+            }
+            .info-title, .info-subtitle {
+                font-size: 6vw;
+            }
+            .member-name {
+                font-size: 5vw;
+            }
+
+            /* GNB 로고 및 아이콘 크기 조정 */
+            .gnb .logo {
+                height: 50px;
+            }
+            .nav-icon {
+                height: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- GNB(전역 내비게이션 바) -->
+    <header class="gnb">
+      <div class="gnb-inner">
+        <div class="gnb-left">
+          <a href="index.html"><img src="gnbimg/logo7.png" alt="Logo" class="logo"></a>
+        </div>
+        <nav class="gnb-right">
+          <a href="project.html"><img src="gnbimg/projects.png" alt="Project" class="nav-icon"></a>
+          <a href="profile.html"><img src="gnbimg/artist.png" alt="Artist" class="nav-icon"></a>
+        </nav>
+      </div>
+    </header>
+
+    <section id="canvas-container">
+      <!-- sketch.js가 이 안에 캔버스를 생성합니다. -->
+    </section>
+
+    <section id="main-content">
+        <div class="frame-52">
+            <div class="about">About</div>
+            <div class="decoding">Decoding</div>
+            <div class="about-subtitle">세상을 읽고</div>
+            <div class="encoding">Encoding</div>
+            <div class="about-subtitle-2">시각으로 답하다</div>
+            <div class="about-description">
+                세상은 수많은 이야기와 정보, 그리고 보이지 않는 문제들로 가득 찬 거대한
+                텍스트입니다. 저희는 그 텍스트를 읽고, 해석하고, 우리만의 언어로 새로운
+                의미를 만들어내는 사람들, 바로 시각 디자이너입니다.
+                <br />
+                <br />
+                이번 졸업 작품은 ‘세상을 그리는 방식’에 대한 저희의 대답입니다.
+                <br />
+                이는 단순히 아름다운 것을 만드는 행위를 넘어, 복잡한 세상을 이해하고 그
+                문제에 대한 해결책을 시각적으로 제안하는 과정에 대한 이야기입니다.
+            </div>
+            <img class="rectangle-98" src="mainimg/poster.png" alt="포스터 이미지">
+            <div class="info">Info</div>
+            <div class="info-category committee">
+                <div class="info-title">졸업전시위원</div>
+                <div class="member-list">
+                    <div class="member-name">김영영</div>
+                    <div class="member-name">김영영</div>
+                    <div class="member-name">김영영</div>
+                    <div class="member-name variant-1">김영영</div>
+                </div>
+            </div>
+            <div class="info-category web-team">
+                <div class="info-subtitle">웹</div>
+                <div class="member-list">
+                    <div class="member-name">김영영</div>
+                    <div class="member-name">김영영</div>
+                    <div class="member-name">김영영</div>
+                    <div class="member-name">김영영</div>
+                </div>
+            </div>
+            <div class="info-category small-banner-team">
+                <div class="info-subtitle">소형배너</div>
+                <div class="member-list">
+                    <div class="member-name">김영영</div>
+                    <div class="member-name">김영영</div>
+                    <div class="member-name">김영영</div>
+                    <div class="member-name">김영영</div>
+                </div>
+            </div>
+            <div class="info-category large-banner-team">
+                <div class="info-subtitle">대형배너</div>
+                <div class="member-list">
+                    <div class="member-name">김영영</div>
+                    <div class="member-name">김영영</div>
+                    <div class="member-name">김영영</div>
+                    <div class="member-name">김영영</div>
+                </div>
+            </div>
+            <div class="info-category video-team">
+                <div class="info-subtitle">영상</div>
+                <div class="member-list short">
+                    <div class="member-name variant-2">김영영</div>
+                    <div class="member-name variant-2">김영영</div>
+                    <div class="member-name variant-2">김영영</div>
+                    <div class="member-name variant-2">김영영</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GSAP 라이브러리 로드 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- p5.js 라이브러리 임포트 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <!-- 외부 JS 파일 연결 -->
+    <script src="sketch.js"></script>
+
+    <script>
+        // 페이지 로드 시 브라우저의 자동 스크롤 복원 기능을 비활성화합니다.
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        // 페이지가 로드될 때 항상 최상단으로 스크롤합니다.
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+
+        // GSAP에 ScrollTrigger 플러그인을 등록합니다.
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 'About' 섹션이 보이기 시작할 때 포스터 애니메이션을 한 번에 실행합니다.
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: ".about", // '.about' 요소가 트리거가 됩니다.
+                start: "top 80%", // '.about' 요소의 상단이 뷰포트의 80% 지점에 닿을 때 시작
+                toggleActions: "play none none reverse", // 스크롤을 내릴 때 재생, 올릴 때 역재생
+            }
+        })
+        .to(".rectangle-98", {
+            // 1단계: 이미지가 세로로 길어집니다. (모바일 크기 고려)
+            height: () => window.innerWidth < 1280 ? "60vw" : "664px",
+            ease: "power1.inOut",
+            duration: 0.8 // 0.8초 동안 진행
+        })
+        .to(".rectangle-98", {
+            // 2단계: 이미지가 가로로 펼쳐집니다. (모바일 크기 고려)
+            width: () => window.innerWidth < 1280 ? "85vw" : "466px",
+            ease: "power1.inOut",
+            duration: 1 // 1초 동안 진행
+        });
+
+        // --- GNB 스크롤 효과 스크립트 ---
+        const gnb = document.querySelector('.gnb');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+          // 10px 이상 스크롤되면 'scrolled' 클래스를 추가하고, 그렇지 않으면 제거합니다.
+          if (window.scrollY > 10) {
+            gnb.classList.add('scrolled');
+          } else {
+            gnb.classList.remove('scrolled');
+          }
+        });
+    </script>
+</body>
+</html>
