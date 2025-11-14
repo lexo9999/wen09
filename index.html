@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js Particle System</title>
+    <!-- GNB 스타일시트 연결 -->
+    <link rel="stylesheet" href="gnb.css">
+    <style>
+        /* 기본 스타일 초기화 */
+        body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        /* height: 100%; */ /* 스크롤을 위해 제거 */
+        background-color: #000000; /* 배경색을 검정색으로 변경 */
+        color: #A8D5E2;
+        font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
+        }
+
+        #canvas-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+        #canvas-container canvas {
+            display: block;
+        }
+
+        #main-content {
+            position: relative;
+            z-index: 1;
+        }
+        /* 제공된 CSS */
+        .frame-52,
+        .frame-52 * {
+            box-sizing: border-box;
+        }
+        .frame-52 {
+            height: 2400px; /* 모든 콘텐츠를 포함할 수 있도록 높이를 충분히 늘림 */
+            position: relative; /* 자식 요소의 absolute 포지셔닝 기준 */
+            overflow: hidden; /* 내부 요소가 넘칠 경우 숨김 */
+            /* 디자인 시안의 기준 너비로 추정 */
+            max-width: 1920px; 
+            margin: 0 auto;
+        }
+        .about {
+            color: #ffffff;
+            text-align: left;
+            font-family: "NotoSansKr-Regular", sans-serif;
+            font-size: 92.44px;
+            font-weight: 400;
+            position: absolute;
+            left: 119px;
+            top: 53px;
+        }
+        .decoding {
+            color: #ffffff;
+            text-align: left;
+            font-family: "NotoSansKr-Regular", sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            position: absolute;
+            left: 1063px;
+            top: 320.99px;
+        }
+        .div {
+            color: #ffffff;
+            text-align: left;
+            font-family: "NotoSansKr-Regular", sans-serif;
+            font-size: 44.81px;
+            font-weight: 400;
+            position: absolute;
+            left: 1063px;
+            top: 365px;
+        }
+        .encoding {
+            color: #ffffff;
+            text-align: left;
+            font-family: "NotoSansKr-Regular", sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            position: absolute;
+            left: 1556px;
+            top: 410px;
+        }
+        .div2 {
+            color: #ffffff;
+            text-align: left;
+            font-family: "NotoSansKr-Regular", sans-serif;
+            font-size: 44.81px;
+            font-weight: 400;
+            position: absolute;
+            left: 1362px;
+            top: 459px;
+        }
+        .div3 {
+            color: #ffffff;
+            text-align: left;
+            font-family: "NotoSansKr-Regular", sans-serif;
+            font-size: 22.18px;
+            line-height: 160%;
+            font-weight: 400;
+            position: absolute;
+            left: 1063px;
+            top: 568.24px;
+            width: 598px;
+        }
+        .rectangle-98 {
+            /* background 속성은 img 태그에 불필요하므로 제거합니다. */
+            width: 4px; /* 애니메이션 시작을 위해 너비를 작게 설정 */
+            height: 4px; /* 애니메이션 시작을 위해 높이를 작게 설정 */
+            position: absolute;
+            left: 404px;
+            top: 263px;
+            object-fit: cover; /* 이미지가 비율을 유지하며 영역을 꽉 채우도록 설정 */
+        }
+        .info {
+            color: #bcd7de;
+            text-align: left;
+            font-family: "NotoSansKr-Regular", sans-serif;
+            font-size: 92.44px;
+            font-weight: 400;
+            position: absolute;
+            left: 119px;
+            top: 1264px;
+        }
+        .frame-43, .frame-44, .frame-45, .frame-46, .frame-47 {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            position: absolute;
+        }
+        .frame-43 { width: 139px; left: 809px; top: 1483px; }
+        .frame-44 { width: 139px; left: 809px; top: 1887px; }
+        .frame-45 { left: 1092px; top: 1887px; }
+        .frame-46 { width: 139px; left: 1375px; top: 1887px; }
+        .frame-47 { left: 1658px; top: 1887px; }
+
+        .div4 {
+            color: #8dd7eb;
+            text-align: left;
+            font-family: "SourceCodePro-Medium", sans-serif;
+            font-size: 25.17px;
+            font-weight: 500;
+            position: relative;
+        }
+        .frame-39, .frame-392 {
+            display: flex;
+            flex-direction: column;
+            gap: 11.69px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .div5 {
+            color: rgba(188, 215, 222, 0.6);
+            text-align: left;
+            font-family: "SourceCodePro-Regular", sans-serif;
+            font-size: 25.17px;
+            line-height: 160%;
+            font-weight: 400;
+            position: relative;
+        }
+        .div6, .div7, .div8 {
+            text-align: left;
+            font-size: 25.17px;
+            position: relative;
+        }
+        .div6 { color: #cde1e6; font-family: "SourceCodePro-Regular", sans-serif; line-height: 160%; font-weight: 400; }
+        .div7 { color: #bcd7de; font-family: "SourceCodePro-Medium", sans-serif; font-weight: 500; }
+        .div8 { color: #bcd7de; font-family: "SourceCodePro-Regular", sans-serif; line-height: 160%; font-weight: 400; }
+        .frame-392 { width: 70.12px; }
+    </style>
+</head>
+<body>
+    <!-- GNB(전역 내비게이션 바) -->
+    <header class="gnb">
+      <div class="gnb-inner">
+        <div class="gnb-left">
+          <a href="index.html"><img src="gnbimg/logo7.png" alt="Logo" class="logo"></a>
+        </div>
+        <nav class="gnb-right">
+          <a href="project.html"><img src="gnbimg/projects.png" alt="Project" class="nav-icon"></a>
+          <a href="profile.html"><img src="gnbimg/artist.png" alt="Artist" class="nav-icon"></a>
+        </nav>
+      </div>
+    </header>
+
+    <section id="canvas-container">
+      <!-- sketch.js가 이 안에 캔버스를 생성합니다. -->
+    </section>
+
+    <section id="main-content">
+        <div class="frame-52">
+            <div class="about">About</div>
+            <div class="decoding">Decoding</div>
+            <div class="div">세상을 읽고</div>
+            <div class="encoding">Encoding</div>
+            <div class="div2">시각으로 답하다</div>
+            <div class="div3">
+                세상은 수많은 이야기와 정보, 그리고 보이지 않는 문제들로 가득 찬 거대한
+                텍스트입니다. 저희는 그 텍스트를 읽고, 해석하고, 우리만의 언어로 새로운
+                의미를 만들어내는 사람들, 바로 시각 디자이너입니다.
+                <br />
+                <br />
+                이번 졸업 작품은 ‘세상을 그리는 방식’에 대한 저희의 대답입니다.
+                <br />
+                이는 단순히 아름다운 것을 만드는 행위를 넘어, 복잡한 세상을 이해하고 그
+                문제에 대한 해결책을 시각적으로 제안하는 과정에 대한 이야기입니다.
+            </div>
+            <img class="rectangle-98" src="mainimg/poster.png" alt="포스터 이미지">
+            <div class="info">Info</div>
+            <div class="frame-43">
+                <div class="div4">졸업전시위원</div>
+                <div class="frame-39">
+                    <div class="div5">김영영</div>
+                    <div class="div5">김영영</div>
+                    <div class="div5">김영영</div>
+                    <div class="div6">김영영</div>
+                </div>
+            </div>
+            <div class="frame-44">
+                <div class="div7">웹</div>
+                <div class="frame-39">
+                    <div class="div5">김영영</div>
+                    <div class="div5">김영영</div>
+                    <div class="div5">김영영</div>
+                    <div class="div5">김영영</div>
+                </div>
+            </div>
+            <div class="frame-45">
+                <div class="div7">소형배너</div>
+                <div class="frame-39">
+                    <div class="div5">김영영</div>
+                    <div class="div5">김영영</div>
+                    <div class="div5">김영영</div>
+                    <div class="div5">김영영</div>
+                </div>
+            </div>
+            <div class="frame-46">
+                <div class="div7">대형배너</div>
+                <div class="frame-39">
+                    <div class="div5">김영영</div>
+                    <div class="div5">김영영</div>
+                    <div class="div5">김영영</div>
+                    <div class="div5">김영영</div>
+                </div>
+            </div>
+            <div class="frame-47">
+                <div class="div7">영상</div>
+                <div class="frame-392">
+                    <div class="div8">김영영</div>
+                    <div class="div8">김영영</div>
+                    <div class="div8">김영영</div>
+                    <div class="div8">김영영</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GSAP 라이브러리 로드 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- p5.js 라이브러리 임포트 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <!-- 외부 JS 파일 연결 -->
+    <script src="sketch.js"></script>
+
+    <script>
+        // GSAP에 ScrollTrigger 플러그인을 등록합니다.
+        gsap.registerPlugin(ScrollTrigger);
+
+        // .rectangle-98 이미지에 대한 타임라인 애니메이션 생성
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#main-content", // 스크롤 애니메이션의 기준 요소
+                start: "top top",
+                end: "+=1500", // 1500px 스크롤하는 동안 애니메이션 진행
+                pin: true, // #main-content 섹션을 스크롤 동안 고정
+                pinSpacing: true, // pin된 요소의 높이만큼 여백을 만들어 스크롤 공간 확보
+                scrub: 1, // 스크롤과 애니메이션을 부드럽게 동기화
+            }
+        });
+
+        // 1단계: 이미지가 세로로 길어지는 애니메이션 ('긴 선' 만들기)
+        tl.to(".rectangle-98", {
+            height: "664px", // 원본 이미지 높이   664px 
+            ease: "none"
+        });
+
+        // 2단계: 이미지가 가로로 펼쳐지는 애니메이션 ('이미지 열기')
+        tl.to(".rectangle-98", {
+            width: "466px", // 원본 이미지 너비 466px
+            ease: "power1.inOut"
+        });
+
+        // --- GNB 스크롤 효과 스크립트 ---
+        const gnb = document.querySelector('.gnb');
+        window.addEventListener('scroll', () => {
+          // 10px 이상 스크롤되면 'scrolled' 클래스를 추가하고, 그렇지 않으면 제거합니다.
+          if (window.scrollY > 10) {
+            gnb.classList.add('scrolled');
+          } else {
+            gnb.classList.remove('scrolled');
+          }
+        });
+    </script>
+</body>
+</html>

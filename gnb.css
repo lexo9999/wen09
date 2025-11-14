@@ -1,0 +1,58 @@
+/* GNB(전역 내비게이션 바) 스타일 */
+.gnb {
+  position: fixed; /* 화면 상단에 고정 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* 반투명 검은색 배경으로 변경 */
+  z-index: 1000; /* 다른 요소들 위에 오도록 설정 */
+  box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
+  /* 경계선 두께를 0.5px로 설정하고, 그림자 효과도 transition에 추가합니다. */
+  border-bottom: 0.5px solid transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* GNB 내부 콘텐츠 컨테이너 */
+.gnb-inner {
+  width: 100%;
+  max-width: 1600px; /* 최대 너비를 1600px로 설정 */
+  margin: 0 auto; /* 중앙 정렬 */
+  padding: 10px 40px; /* 상하/좌우 여백 */
+  display: flex;
+  justify-content: space-between; /* 양쪽 끝으로 정렬 */
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.gnb .logo {
+  height: 70px; /* 로고 이미지 높이 70px로 설정 */
+  vertical-align: middle; /* 이미지가 수직 중앙에 오도록 */
+}
+
+.gnb-right {
+  display: flex;
+  align-items: center; /* 아이콘들을 수직 중앙에 정렬 */
+  gap: 30px; /* 메뉴 아이템 사이 간격 */
+}
+
+/* GNB 오른쪽 메뉴 아이콘 스타일 */
+.nav-icon {
+  height: 35px; /* 아이콘 높이 설정 (로고보다 작게) */
+  vertical-align: middle; /* 수직 중앙 정렬 */
+  transition: filter 0.3s ease; /* 부드러운 전환 효과 */
+  filter: brightness(0) invert(1); /* 기본 상태: 흰색으로 변경 */
+}
+
+/* GNB 호버 및 활성화 효과 */
+.gnb-right a:hover .nav-icon,
+.gnb-right a.active .nav-icon {
+  /* #FF5733 색상과 유사한 필터 값 */
+  filter: invert(42%) sepia(93%) saturate(1352%) hue-rotate(346deg) brightness(99%) contrast(103%);
+}
+
+/* 스크롤 시 GNB 스타일 */
+.gnb.scrolled {
+  /* 스크롤 시 테마 색상 경계선과 함께 은은한 그림자 효과를 추가합니다. */
+  border-bottom-color: #A8D5E2; /* 테마 색상(연한 하늘색)으로 변경 */
+  box-shadow: 0px 4px 12px rgba(168, 213, 226, 0.2); /* 그림자 색상도 테마에 맞게 변경 */
+}

@@ -1,0 +1,204 @@
+.frame-52,
+.frame-52 * {
+  box-sizing: border-box;
+}
+.frame-52 {
+  height: 2291px;
+  position: relative;
+  overflow: hidden;
+}
+.about {
+  color: #ffffff;
+  text-align: left;
+  font-family: "NotoSansKr-Regular", sans-serif;
+  font-size: 92.44444274902344px;
+  font-weight: 400;
+  position: absolute;
+  left: 119px;
+  top: 53px;
+}
+.decoding {
+  color: #ffffff;
+  text-align: left;
+  font-family: "NotoSansKr-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1063px;
+  top: 320.99px;
+}
+.div {
+  color: #ffffff;
+  text-align: left;
+  font-family: "NotoSansKr-Regular", sans-serif;
+  font-size: 44.8141975402832px;
+  font-weight: 400;
+  position: absolute;
+  left: 1063px;
+  top: 365px;
+}
+.encoding {
+  color: #ffffff;
+  text-align: left;
+  font-family: "NotoSansKr-Regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  position: absolute;
+  left: 1556px;
+  top: 410px;
+}
+.div2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "NotoSansKr-Regular", sans-serif;
+  font-size: 44.8141975402832px;
+  font-weight: 400;
+  position: absolute;
+  left: 1362px;
+  top: 459px;
+}
+.div3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "NotoSansKr-Regular", sans-serif;
+  font-size: 22.189239501953125px;
+  line-height: 160%;
+  font-weight: 400;
+  position: absolute;
+  left: 1063px;
+  top: 568.24px;
+  width: 598px;
+}
+/* .rectangle-98 {
+  background: #d9d9d9;
+  width: 466px;
+  height: 664px;
+  position: absolute;
+  left: 404px;
+  top: 263px;
+} */
+.info {
+  color: #bcd7de;
+  text-align: left;
+  font-family: "NotoSansKr-Regular", sans-serif;
+  font-size: 92.44444274902344px;
+  font-weight: 400;
+  position: absolute;
+  left: 119px;
+  top: 1264px;
+}
+.frame-43 {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 139px;
+  position: absolute;
+  left: 809px;
+  top: 1483px;
+}
+.div4 {
+  color: #8dd7eb;
+  text-align: left;
+  font-family: "SourceCodePro-Medium", sans-serif;
+  font-size: 25.170637130737305px;
+  font-weight: 500;
+  position: relative;
+}
+.frame-39 {
+  display: flex;
+  flex-direction: column;
+  gap: 11.69px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.div5 {
+  color: rgba(188, 215, 222, 0.6);
+  text-align: left;
+  font-family: "SourceCodePro-Regular", sans-serif;
+  font-size: 25.170637130737305px;
+  line-height: 160%;
+  font-weight: 400;
+  position: relative;
+}
+.div6 {
+  color: #cde1e6;
+  text-align: left;
+  font-family: "SourceCodePro-Regular", sans-serif;
+  font-size: 25.170637130737305px;
+  line-height: 160%;
+  font-weight: 400;
+  position: relative;
+}
+.frame-44 {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 139px;
+  position: absolute;
+  left: 809px;
+  top: 1887px;
+}
+.div7 {
+  color: #bcd7de;
+  text-align: left;
+  font-family: "SourceCodePro-Medium", sans-serif;
+  font-size: 25.170637130737305px;
+  font-weight: 500;
+  position: relative;
+}
+.frame-45 {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 1092px;
+  top: 1887px;
+}
+.frame-46 {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 139px;
+  position: absolute;
+  left: 1375px;
+  top: 1887px;
+}
+.frame-47 {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 1658px;
+  top: 1887px;
+}
+.frame-392 {
+  display: flex;
+  flex-direction: column;
+  gap: 11.69px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 70.12px;
+  position: relative;
+}
+.div8 {
+  color: #bcd7de;
+  text-align: left;
+  font-family: "SourceCodePro-Regular", sans-serif;
+  font-size: 25.170637130737305px;
+  line-height: 160%;
+  font-weight: 400;
+  position: relative;
+}
