@@ -50,6 +50,12 @@
             min-height: 100vh;
         }
 
+        /* GNB 스크롤 시 경계선 제거 (이 페이지에만 적용) */
+        .gnb.scrolled {
+            border-bottom-color: transparent;
+            box-shadow: none;
+        }
+
         /* --- Main Content --- */
         .main-content-wrapper {
             flex-grow: 1;
@@ -68,13 +74,16 @@
         /* --- Filter --- */
         /* [CHANGED] Filter section style matched to index.html */
         .filter-section {
-            background-color: var(--c-black);
+            background-color: rgba(0, 0, 0, 0.5); /* GNB와 동일하게 배경색 투명도 적용 */
+            -webkit-backdrop-filter: blur(10px); /* Safari 호환성을 위한 GNB 옵션 */
+            backdrop-filter: blur(8px); /* GNB와 동일한 블러 효과 적용 */
             padding: 25px 0;
             border-bottom: 1px solid var(--c-dark-gray-2);
             position: sticky;
-            top: 91px; /* Adjusted to sit flush under the GNB */
+            top: 90px; /* GNB 높이에 맞춰 간격 제거 */
             z-index: 900;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            /* box-shadow: 0 4px 12px rgba(0,0,0,0.05); */ /* GNB와 통일감을 위해 그림자 제거 */
         }
 
         .filter-nav {
