@@ -7,7 +7,7 @@
     <!-- Google Fonts: Noto Sans KR, Source Code Pro -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <!-- GNB 스타일시트 연결 -->
     <link rel="stylesheet" href="gnb.css">
     <style>
@@ -17,7 +17,7 @@
         padding: 0;
         width: 100%;
         /* height: 100%; */ /* 스크롤을 위해 제거 */
-        background-color: #000000; /* 배경색을 검정색으로 변경 */
+        background-color: #141217; /* 배경색을 검정색으로 변경 */
         color: #A8D5E2;
         font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
         }
@@ -49,19 +49,19 @@
             gap: 150px; /* 섹션 간의 간격 */
             max-width: 1920px;
             margin: 0 auto;
-            padding: 80px 10%; /* 상하, 좌우 여백 */
+            padding: 80px 17%; /* 상하, 좌우 여백 */
         }
 
         /* --- About 섹션 --- */
         .about-section {
             display: flex;
             flex-direction: column;
-            gap: 80px;
+            gap: 80px,0; 
         }
 
         .about-columns {
             display: flex;
-            gap: 5%;
+            gap: 15%;
             align-items: flex-start;
         }
 
@@ -90,7 +90,7 @@
             display: flex;
             flex-direction: column; /* 세로로 배치 */
             align-items: flex-start; /* 왼쪽 정렬 */
-            gap: 8px; /* 텍스트 사이 간격 추가 */
+            gap: 6px; /* 텍스트 사이 간격 추가 */
         }
 
         .about-text-row.align-right {
@@ -98,45 +98,45 @@
         }
 
         .decoding {
-            color: #ffffff;
+            color: #60d5f3;
             font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
             font-size: 24px;
-            font-weight: 400;
+            font-weight: 200;
         }
 
         .about-subtitle {
             color: #ffffff;
             font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
-            font-size: 44.81px;
+            font-size: 44px;
             font-weight: 400;
         }
 
         .encoding {
-            color: #ffffff;
+            color: #60d5f3;
             font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
             font-size: 24px;
-            font-weight: 400;
+            font-weight: 200;
         }
 
         .about-subtitle-2 {
             color: #ffffff;
             font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
-            font-size: 44.81px;
+            font-size: 44px;
             font-weight: 400;
         }
 
         .about-description {
             color: #ffffff;
             font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
-            font-size: 22.18px;
+            font-size: 20px;
             line-height: 160%;
-            font-weight: 400;
+            font-weight: 350;
             margin-top: 60px; /* 위쪽 문구 그룹과의 간격 */
         }
 
         .rectangle-98 {
             flex-shrink: 0; /* 이미지가 줄어들지 않도록 설정 */
-            width: 30%; /* 이미지 너비를 30%로 고정 */
+            width: 38%; /* 이미지 너비를 30%로 고정 */
             /* flex: 1 및 width: 100% 제거 */
             height: auto; /* 비율 유지를 위해 auto로 설정 */
             object-fit: cover; /* 이미지가 비율을 유지하며 영역을 꽉 채우도록 설정 */
@@ -152,7 +152,7 @@
         }
 
         .info {
-            color: #bcd7de;
+            color: #ffffff;
             font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
             font-size: 92.44px;
             font-weight: 400;
@@ -162,7 +162,7 @@
         .info-grid {
             display: flex;
             flex-wrap: wrap; /* 화면이 좁아지면 줄바꿈 */
-            gap: 60px 4%; /* 세로, 가로 간격 */
+            gap: 136px 4%; /* 세로, 가로 간격 */
             justify-content: flex-start;
             align-items: flex-start;
         }
@@ -170,7 +170,7 @@
         .info-category {
             display: flex;
             flex-direction: column;
-            gap: 60px;
+            gap: 36px;
             align-items: flex-start;
         }
         /* Flex 아이템 너비 설정 (가로 5개 배치 기준) */
@@ -181,35 +181,35 @@
         .info-category.video-team { flex-basis: 16%; }
 
         .info-title {
-            color: #8dd7eb;
+            color: #ffffff;
             font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
-            font-size: 25.17px;
+            font-size: 20px;
             font-weight: 500;
         }
 
         .member-list {
             display: flex;
             flex-direction: column;
-            gap: 11.69px;
+            gap: 10px;
             align-items: flex-start;
         }
 
         .member-name {
-            color: rgba(188, 215, 222, 0.6);
+            color: rgba(255, 255, 255, 0.8);
             font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
-            font-size: 25.17px;
+            font-size: 20px;
             line-height: 160%;
-            font-weight: 400;
+            font-weight: 350;
         }
 
-        .member-name.variant-1 { color: #cde1e6; }
+        .member-name.variant-1 { color: #ffffff; }
         .member-name.variant-2 { color: #bcd7de; }
 
         .info-subtitle {
-            color: #bcd7de;
+            color: #ffffff;
             font-family: 'Source Code Pro', 'Noto Sans KR', sans-serif;
             font-weight: 500;
-            font-size: 25.17px;
+            font-size: 22px;
         }
 
 
@@ -344,7 +344,6 @@
                         <div class="member-name">박성욱</div>
                         <div class="member-name">박소현</div>
                         <div class="member-name">윤해주</div>
-                        <div class="member-name variant-1">김영영</div>
                     </div>
                 </div>
                 <div class="info-category web-team">
@@ -375,9 +374,9 @@
                 <div class="info-category video-team">
                     <div class="info-subtitle">영상</div>
                     <div class="member-list">
-                        <div class="member-name variant-2">고영인</div>
-                        <div class="member-name variant-2">박성민</div>
-                        <div class="member-name variant-2">이상훈</div>
+                        <div class="member-name">고영인</div>
+                        <div class="member-name">박성민</div>
+                        <div class="member-name">이상훈</div>
                     </div>
                 </div>
             </div>
